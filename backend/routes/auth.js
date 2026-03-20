@@ -70,5 +70,27 @@ router.post('/login', async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 });
-
+// TEMPORARY ROUTE - DELETE AFTER USE
+router.get('/setup', async (req, res) => {
+  try {
+    const bcrypt = require('bcryptjs');
+    const salt = await bcrypt.genSalt(10);
+    const password = await bcrypt.hash('admin123', salt);
+    
+    await User.deleteMany({ role: 'admin' });
+    
+    const admin = await User.create({
+      name: 'Admin',
+      username: 'admin',
+      email: 'admin@inventory.com',
+      password,
+      role: 'admin',
+      isActive: true
+    });
+    
+    res.json({ message: 'Admin created!', admin });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
 module.exports = router;
