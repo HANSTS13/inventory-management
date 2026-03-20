@@ -15,7 +15,8 @@ const StockIn = () => {
     API.get(url).then(r => setRecords(r.data));
   };
 
-  useEffect(() => { fetchRecords(); }, [dateFilter]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+useEffect(() => { fetchRecords(); }, [dateFilter]);
   useEffect(() => { API.get('/products').then(r => setProducts(r.data)); }, []);
 
   const handleSubmit = async (e) => {

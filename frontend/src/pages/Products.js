@@ -18,7 +18,8 @@ const Products = () => {
     API.get(url).then(r => setProducts(r.data));
   };
 
-  useEffect(() => { fetchProducts(); }, [search, categoryFilter, sortBy]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+useEffect(() => { fetchProducts(); }, [search, categoryFilter, sortBy]);
   useEffect(() => { API.get('/categories').then(r => setCategories(r.data)); }, []);
 
   const handleSubmit = async (e) => {

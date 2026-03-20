@@ -9,7 +9,8 @@ const Employees = () => {
   const [form, setForm] = useState({ name: '',username: '', email: '', password: '', phone: '', department: '' });
 
   const fetch = () => API.get(`/users?search=${search}`).then(r => setEmployees(r.data));
-  useEffect(() => { fetch(); }, [search]);
+// eslint-disable-next-line react-hooks/exhaustive-deps
+useEffect(() => { fetch(); }, [search]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

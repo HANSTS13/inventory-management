@@ -7,7 +7,8 @@ const Categories = () => {
   const [form, setForm] = useState({ name: '', description: '' });
 
   const fetch = () => API.get('/categories').then(r => setCategories(r.data));
-  useEffect(() => { fetch(); }, []);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+useEffect(() => { fetch(); }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
